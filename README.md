@@ -1,2 +1,0 @@
-# hi-nest
-NestJs api
