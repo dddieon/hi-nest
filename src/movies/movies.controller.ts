@@ -8,6 +8,7 @@ import {
   Query,
   Body,
 } from '@nestjs/common';
+import { CreateMovieDto } from './dto/create-movie.dto';
 import { Movie } from './entities/movie.entitiy';
 import { MoviesService } from './movies.service';
 
@@ -20,32 +21,32 @@ export class MoviesController {
   }
 
   //gets
-  @Get('search')
-  search(@Query('year') searchingYear: string) {
-    return `We are searching for a movie made after: ${searchingYear}`;
-  }
+  // @Get('search')
+  // search(@Query('year') searchingYear: string) {
+  //   return `We are searching for a movie made after: ${searchingYear}`;
+  // }
 
   //get
   @Get(':id')
-  getOne(@Param('id') movieId: string) {
+  getOne(@Param('id') movieId: number) {
     return this.moviesService.getOne(movieId);
   }
 
   //생성
   @Post()
-  create(@Body() movieData) {
+  create(@Body() movieData: CreateMovieDto) {
     return this.moviesService.create(movieData);
   }
 
   //삭제
   @Delete('/:id')
-  remove(@Param('id') movieId: string) {
+  remove(@Param('id') movieId: number) {
     return this.moviesService.deleteOne(movieId);
   }
 
   //업데이트
   @Patch('/:id')
-  patch(@Param('id') movieId: string, @Body() updateData) {
+  patch(@Param('id') movieId: number, @Body() updateData) {
     return this.moviesService.update(movieId, updateData);
   }
 }
