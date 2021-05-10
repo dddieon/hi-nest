@@ -5,10 +5,11 @@ import {
   Post,
   Delete,
   Patch,
-  Query,
+  //Query,
   Body,
 } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entitiy';
 import { MoviesService } from './movies.service';
 
@@ -46,7 +47,7 @@ export class MoviesController {
 
   //업데이트
   @Patch('/:id')
-  patch(@Param('id') movieId: number, @Body() updateData) {
+  patch(@Param('id') movieId: number, @Body() updateData: UpdateMovieDto) {
     return this.moviesService.update(movieId, updateData);
   }
 }
